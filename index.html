@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>Thanseeha Nasrin · portfolio</title>
+  <title>Thanseeha Nasrin · portfolio (fixed position)</title>
   <style>
     * {
       margin: 0;
@@ -65,7 +65,7 @@
       border-bottom-color: #9f7aea;
     }
 
-    /* ----- HERO section (matching screenshot layout) ----- */
+    /* ----- HERO section (flex with proper alignment) ----- */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -79,6 +79,7 @@
 
     .hero-text {
       max-width: 600px;
+      /* ensure buttons container aligns naturally */
     }
 
     .hero-text h3 {
@@ -111,17 +112,24 @@
       max-width: 550px;
     }
 
-    /* ----- buttons (exactly "Let's Connect / View" style) ----- */
+    /* ----- BUTTONS (base style: inline-block, side by side) ----- */
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;               /* consistent spacing between buttons */
+      align-items: center;
+    }
+
     .buttons a {
       text-decoration: none;
       padding: 12px 32px;
       border-radius: 40px;
       font-weight: 600;
       font-size: 1.1rem;
-      margin-right: 1rem;
-      display: inline-block;
       transition: 0.3s;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      display: inline-block;    /* ensures natural width */
+      white-space: nowrap;      /* prevent breaking inside button */
     }
 
     .btn-primary {
@@ -141,7 +149,7 @@
       box-shadow: 0 0 22px rgba(159, 122, 234, 0.8);
     }
 
-    /* ----- PROFILE IMAGE (enhanced glow & ring) ----- */
+    /* ----- PROFILE IMAGE (enhanced glow) ----- */
     .hero-img img {
       width: 280px;
       height: 280px;
@@ -264,7 +272,7 @@
     }
 
     /* ========== IMPROVED MOBILE STYLES ========== */
-    /* specifically fixes GitHub / View button on small screens */
+    /* specifically fixes the button position: stacked but centered */
     @media (max-width: 768px) {
       nav {
         padding: 15px 5%;
@@ -316,33 +324,30 @@
         margin-right: auto;
       }
 
-      /* ***** FIX: Buttons stack & full width on mobile ***** */
+      /* ***** FIX: Buttons stack, full width with max-width, centered ***** */
       .buttons {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        flex-direction: column;      /* stack vertically */
+        align-items: center;         /* center the stacked items */
         gap: 1rem;
         width: 100%;
       }
 
       .buttons a {
         width: 100%;
-        max-width: 280px;        /* keep a nice readable width */
-        margin-right: 0;          /* remove inline margin */
+        max-width: 280px;            /* maintain comfortable width */
         text-align: center;
         padding: 14px 18px;
         font-size: 1.2rem;
-        box-sizing: border-box;
+        white-space: normal;         /* allow very tiny text wrap if needed, but unlikely */
       }
 
-      /* optional: make both buttons equal width & rounded */
       .btn-primary, .btn-secondary {
         display: block;
         margin-left: auto;
         margin-right: auto;
       }
 
-      /* contact buttons stack vertically but look clean */
+      /* contact section buttons also stack nicely */
       .contact-buttons {
         flex-direction: column;
         align-items: center;
@@ -405,7 +410,7 @@
   </ul>
 </nav>
 
-<!-- HERO (about) -->
+<!-- HERO (about) with FIXED BUTTON POSITION — now using flex on .buttons -->
 <section class="hero" id="about">
   <div class="hero-text">
     <h3>Welcome to My Portfolio</h3>
@@ -414,7 +419,7 @@
     <p>
       Computer Science Engineering student at LBS College of Engineering, Kasaragod with strong interest in innovation, leadership, and technology. Passionate about building impactful solutions, leading communities, and turning ideas into meaningful projects.
     </p>
-    <!-- BUTTONS: Let's Connect / View GitHub (fixed mobile stacking) -->
+    <!-- BUTTONS: now wrapped in flex container, side‑by‑side on desktop, stacked on mobile (fixed) -->
     <div class="buttons">
       <a href="#contact" class="btn-primary">Let's Connect</a>
       <a href="https://github.com/Thanseeha-nasrin" class="btn-secondary" target="_blank">View GitHub</a>
