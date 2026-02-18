@@ -592,34 +592,35 @@
         }
 
         .btn-outline {
-            background: transparent;
-            color: var(--text-dark);
-            border: 2px solid transparent;
-            border-image: var(--gradient-1);
-            border-image-slice: 1;
+            background: var(--gradient-1);
+            color: white;
+            box-shadow: 0 10px 25px rgba(67, 97, 238, 0.3);
             position: relative;
+            border: none;
         }
 
         .btn-outline::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-1);
-            transition: left 0.3s ease;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
             z-index: -1;
         }
 
-        .btn-outline:hover {
-            color: white;
-            border-image: none;
-            transform: translateY(-3px) scale(1.05);
+        .btn-outline:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
-        .btn-outline:hover::before {
-            left: 0;
+        .btn-outline:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(67, 97, 238, 0.4);
         }
 
         /* Profile Container with Enhanced Animation */
@@ -1584,7 +1585,7 @@
             margin: 0;
         }
 
-        /* Mobile Responsive */
+        /* Mobile Responsive - Fixed */
         @media (max-width: 992px) {
             .hero-content {
                 text-align: center;
@@ -1650,11 +1651,30 @@
             }
             
             .hero {
-                padding: 80px 0 40px;
+                padding: 100px 0 40px;
+            }
+            
+            /* Fix navbar spacing on mobile */
+            .hero h5 {
+                margin-top: 20px;
             }
             
             .section {
                 padding: 50px 0;
+            }
+            
+            /* Profile image comes after text on mobile */
+            .row {
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .col-lg-6:first-child {
+                order: 1;
+            }
+            
+            .col-lg-6:last-child {
+                order: 2;
             }
             
             .profile-badges {
